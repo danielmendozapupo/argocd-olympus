@@ -1,24 +1,30 @@
 output "argocd_namespace" {
-  description = "Namespace containing the Argo CD installation."
-  value       = kubernetes_namespace_v1.argocd.metadata[0].name
-}
-
-output "argocd_release_name" {
-  description = "Installed Helm release name."
-  value       = helm_release.argocd.name
+  description = "Kubernetes namespace where Argo CD is installed."
+  value       = var.argocd_namespace
 }
 
 output "argocd_chart_version" {
-  description = "Installed argo-cd Helm chart version."
-  value       = helm_release.argocd.version
+  description = "Argo CD Helm chart version."
+  value       = var.argocd_chart_version
+}
+
+output "argocd_server_service" {
+  description = "Argo CD server Kubernetes service."
+  value       = "argocd-server"
 }
 
 output "argocd_port_forward_command" {
-  description = "Command to access the Argo CD API/UI locally."
-  value       = "kubectl -n ${var.argocd_namespace} port-forward svc/${var.argocd_release_name}-server 8080:443"
+  description = "Command to expose the Argo CD UI locally."
+  value       = "kubectl port-forward svc/argocd-server -n ${var.argocd_namespace} ${var.argocd_local_port}:80"
 }
 
-output "argocd_initial_admin_password_command" {
-  description = "Command to retrieve the initial Argo CD admin password."
-  value       = "kubectl -n ${var.argocd_namespace} get secret argocd-initial-admin-secret -o jsonpath='{.data.password}' | base64 -d; echo"
+output "argocd_ui_url" {
+  description = "Local Argo CD UI URL after starting port-forwarding."
+  value       = "http://localhost:${var.argocd_local_port}"
 }
+
+output "argocd_local_port" {
+  description = "Local port used to access the Argo CD UI."
+  value       = var.argocd_local_port
+}
+

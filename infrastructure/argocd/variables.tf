@@ -28,3 +28,9 @@ variable "argocd_chart_version" {
   type        = string
   default     = "10.9.2"
 }
+
+variable "argocd_local_port" {
+  description = "Local port used to access the Argo CD UI via kubectl port-forward."
+  type        = number
+  default     = 8082
+}
