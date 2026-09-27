@@ -1,22 +1,21 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: olympus
+  name: hello-world
   namespace: argocd
-  finalizers:
-    - resources-finalizer.argocd.argoproj.io
+
 spec:
   project: olympus
+
   source:
-    # CHANGE ME to the Git URL for this argocd-olympus repository.
-    repoURL: https://github.com/YOUR_GITHUB_USER/argocd-olympus.git
+    repoURL: https://github.com/danielmendozapupo/argocd-olympus.git
     targetRevision: main
-    path: kubernetes/apps
-    directory:
-      recurse: true
+    path: kubernetes/apps/hello-world/manifests
+
   destination:
     server: https://kubernetes.default.svc
-    namespace: argocd
+    namespace: hello-world
+
   syncPolicy:
     automated:
       prune: true

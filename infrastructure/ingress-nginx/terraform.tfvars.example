@@ -1,0 +1,13 @@
+# Kubernetes configuration
+kubeconfig_path = "~/.kube/config"
+
+# Optional: explicitly select the Kubernetes context.
+# Leave commented to use the current context from kubeconfig.
+# kube_context = "kind-learning"
+
+# ingress-nginx Helm chart version
+chart_version = "4.15.1"
+
+# Service type used to expose the ingress-nginx controller.
+# NodePort is appropriate for the current local Kubernetes lab.
+service_type = "NodePort"

@@ -3,6 +3,7 @@ kind: AppProject
 metadata:
   name: olympus
   namespace: argocd
+
 spec:
   description: Olympus home Kubernetes lab
 

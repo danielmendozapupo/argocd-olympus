@@ -1,13 +1,18 @@
-# Homelab defaults for Argo CD.
-# Keep secrets out of this file and out of Terraform state.
-
 crds:
   install: true
   keep: true
+
+configs:
+  params:
+    server.insecure: true
 
 server:
   service:
     type: ClusterIP
 
-# The chart defaults are intentionally retained for the remaining components.
-# Add ingress, SSO, resource tuning, metrics, or notifications here as the lab evolves.
+  ingress:
+    enabled: true
+    ingressClassName: nginx
+    hostname: argocd.olympus.local
+    path: /
+    pathType: Prefix
