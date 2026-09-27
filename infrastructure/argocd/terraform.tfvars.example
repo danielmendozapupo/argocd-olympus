@@ -1,0 +1,9 @@
+# Terraform uses ~/.kube/config and its current-context by default.
+# Uncomment these if you want to target a specific kubeconfig/context.
+
+# kubeconfig_path = "~/.kube/config"
+# kube_context     = "olympus"
+
+# argocd_namespace     = "argocd"
+# argocd_release_name  = "argocd"
+# argocd_chart_version = "10.9.2"

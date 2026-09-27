@@ -1,0 +1,18 @@
+apiVersion: argoproj.io/v1alpha1
+kind: AppProject
+metadata:
+  name: olympus
+  namespace: argocd
+spec:
+  description: Olympus home Kubernetes lab
+
+  sourceRepos:
+    - https://github.com/danielmendozapupo/argocd-olympus.git
+
+  destinations:
+    - server: https://kubernetes.default.svc
+      namespace: "*"
+
+  clusterResourceWhitelist:
+    - group: "*"
+      kind: "*"

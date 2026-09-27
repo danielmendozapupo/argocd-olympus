@@ -1,0 +1,25 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: olympus
+  namespace: argocd
+  finalizers:
+    - resources-finalizer.argocd.argoproj.io
+spec:
+  project: olympus
+  source:
+    # CHANGE ME to the Git URL for this argocd-olympus repository.
+    repoURL: https://github.com/YOUR_GITHUB_USER/argocd-olympus.git
+    targetRevision: main
+    path: kubernetes/apps
+    directory:
+      recurse: true
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: argocd
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
+    syncOptions:
+      - CreateNamespace=true
